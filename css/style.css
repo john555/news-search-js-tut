@@ -37,7 +37,7 @@ input.search {
 ul.news {
   min-width: 32rem;
   list-style: none;
-  max-width: 80rem;
+  max-width: 60rem;
   padding: 0 4rem;
   margin: 6rem 0 2rem;
 }
