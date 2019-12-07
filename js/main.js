@@ -1,4 +1,5 @@
 const apiKey = "";
+
 function el(id) {
   return document.getElementById(id);
 }
@@ -22,28 +23,22 @@ function fetchNews(searchTerm) {
   return fetch(url).then(response => response.json());
 }
 
-function onclick() {
-  console.log("Clicked");
-}
-
 function renderNews(articles) {
+  newsList.innerHTML = "";
+
   // let html = "";
 
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
 
     const li = createEl("li", null, [
-      createEl("div", { onclick: "onclick" }, [
+      createEl("a", { href: article.url }, [
         createEl("img", { src: article.urlToImage }),
-        createEl("h2", { className: "title" }, [
-          createEl("#text", article.title)
-        ])
+        createEl("h2", { className: "title" }, article.title)
       ])
     ]);
 
     newsList.appendChild(li);
-
-    console.log({ li: li.innerHTML });
 
     // html += `
     // <li>
