@@ -1,16 +1,24 @@
-function createEl(type, props, children) {
-  if (type === "#text") {
-    const el = document.createTextNode(props);
-    return el;
-  }
+function getKeyAlias(key) {
+  const lookup = {
+    className: "class",
+    htmlFor: "for"
+  };
+  return lookup[key];
+}
 
+function createEl(type, props, children) {
   const el = document.createElement(type);
 
   if (props) {
     for (let key in props) {
       const value = props[key];
-      el.setAttribute(key, value);
+      let _key = getKeyAlias(key);
+      el.setAttribute(_key || key, value);
     }
+  }
+
+  if (typeof children === "string") {
+    el.innerText = children;
   }
 
   if (children && typeof children === "object" && children.length) {
